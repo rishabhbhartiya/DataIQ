@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to DataIQ are documented here.
+All notable changes to MLRadar are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
@@ -24,7 +24,7 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **Pipeline Code Generator** — generates complete runnable sklearn Pipeline
   script with auto-selected imputer, scaler, encoder, and model options
 - **Narrative Engine** — plain-English summaries for every report section
-- **Drift CLI** (`dataiq-drift`) — interactive terminal drift monitor with
+- **Drift CLI** (`MLRadar-drift`) — interactive terminal drift monitor with
   colour-coded PSI table, HTML + JSON output, optional leakage check
 - **Drift Report HTML** — standalone drift report with PSI heatmap,
   per-column accordion, missing-rate drift table, schema diff
@@ -36,12 +36,12 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   NumPy arrays, dicts
 
 ### Changed
-- Library renamed from `mlprofiler2` → `dataiq`
-- Main class renamed from `MLProfiler` → `DataIQ`
+- Library renamed from `mlprofiler2` → `MLRadar`
+- Main class renamed from `MLProfiler` → `MLRadar`
 - HTML template fully redesigned with dark glassmorphism theme
 - Chart rendering changed to standalone iframe files (fixes Plotly
   rendering issues in offline HTML)
-- Output files now written to `dataiq_output/` directory
+- Output files now written to `MLRadar_output/` directory
 
 ### Fixed
 - Plotly charts not rendering in offline HTML (iframes fix)
@@ -51,6 +51,3 @@ Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ---
 
 ## [0.2.0] — mlprofiler2 (legacy)
-
-Previous version under the `mlprofiler2` name. Included basic EDA report,
-before/after comparison, transformer pipeline, and model training CLI.

@@ -1,4 +1,4 @@
-"""html_template.py — DataIQ HTML Report Template
+"""html_template.py — MLRadar HTML Report Template
 
 Original template preserved exactly.
 Five new nav sections + render functions added:
@@ -8,7 +8,7 @@ Five new nav sections + render functions added:
   • Temporal Awareness  (temporal)
   • Problem Type        (shown in overview, no separate tab)
 
-Branding updated: MLProfiler → DataIQ
+Branding updated: MLProfiler → MLRadar
 Placeholder added: __REPORT_MODE__  (used by report_builder, ignored by template)
 """
 
@@ -132,7 +132,7 @@ def get_template() -> str:
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DataIQ — __DATASET_NAME__</title>
+<title>MLRadar — __DATASET_NAME__</title>
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -510,7 +510,7 @@ body::before{
 <!-- ═══════════ LEFT SIDEBAR ═══════════ -->
 <nav class="sidebar-left">
   <div class="logo-area">
-    <div class="logo-name">DataIQ</div>
+    <div class="logo-name">MLRadar</div>
     <div class="logo-ver">v1.0 · ML Data Intelligence Suite</div>
   </div>
   <div class="dataset-info">
@@ -570,7 +570,7 @@ body::before{
 <!-- ═══════════ MAIN AREA ═══════════ -->
 <main class="main-area">
   <div class="page-header">
-    <div class="page-title">__DATASET_NAME__ <span>— DataIQ Report</span></div>
+    <div class="page-title">__DATASET_NAME__ <span>— MLRadar Report</span></div>
     <div class="page-meta" id="page-meta">Loading...</div>
   </div>
 
@@ -704,7 +704,7 @@ body::before{
 <aside class="sidebar-right" id="kb-sidebar">
   <div class="kb-resize-handle" id="kb-drag"></div>
   <div class="kb-header">
-    <span style="font-size:16px">📚</span>
+    <span style="font-size:16px"></span>
     <div class="kb-title-main">ML Knowledge Base</div>
   </div>
   <div class="kb-scroll" id="kb-scroll">
@@ -1634,7 +1634,7 @@ const KB = {
   temporal: {
     label: 'Temporal Awareness', blocks: [
       { title: 'Concept drift explained', body: `<p><b>Concept drift</b> means the relationship between features and the target changes over time. Your model learns the past distribution; if the future is different, predictions degrade.</p>
-      <p>DataIQ flags features with &gt;20% mean shift from earliest to latest time quartile as potential drift indicators.</p>` },
+      <p>MLRadar flags features with &gt;20% mean shift from earliest to latest time quartile as potential drift indicators.</p>` },
       { title: 'Types of drift', body: `<ul>
         <li><b>Sudden drift</b> — abrupt distribution change (e.g. COVID lockdown effect on spending data).</li>
         <li><b>Gradual drift</b> — slow shift over months (e.g. inflation gradually shifting income distributions).</li>

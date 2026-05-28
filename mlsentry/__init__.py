@@ -1,5 +1,5 @@
 """
-DataIQ — Advanced ML Data Intelligence Suite
+MLRadar — Advanced ML Data Intelligence Suite
 =============================================
 The ML data library that thinks, not just profiles.
 
@@ -13,7 +13,7 @@ Unique features:
   • Feature Interactions   — mutual information between all feature pairs
   • Temporal Awareness     — time-series decomposition + concept drift windows
 """
-from .core.profiler   import DataIQ
+from .core.profiler   import MLRadar
 from .core.dataset    import Dataset
 from .core.scorer     import ReadinessScorer
 from .core.leakage    import LeakageDetector
@@ -21,4 +21,4 @@ from .core.drift      import DriftAnalyzer
 from .core.code_gen   import PipelineCodeGenerator
 
 __version__ = "1.0.0"
-__all__ = ["DataIQ","Dataset","ReadinessScorer","LeakageDetector","DriftAnalyzer","PipelineCodeGenerator"]
+__all__ = ["MLRadar","Dataset","ReadinessScorer","LeakageDetector","DriftAnalyzer","PipelineCodeGenerator"]

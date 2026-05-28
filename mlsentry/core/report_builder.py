@@ -1,7 +1,7 @@
 """
 report_builder.py — ReportBuilder
 ====================================
-Renders HTML reports for DataIQ.
+Renders HTML reports for MLRadar.
 
 Original method (preserved exactly):
     render(output_path)       — single or before/after comparison report
@@ -23,7 +23,7 @@ from typing import Any, Dict, Optional
 
 class ReportBuilder:
     """
-    Render DataIQ HTML reports from analysis dicts.
+    Render MLRadar HTML reports from analysis dicts.
 
     Parameters
     ----------

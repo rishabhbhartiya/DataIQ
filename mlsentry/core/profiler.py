@@ -1,7 +1,7 @@
 """
-profiler.py — DataIQ
+profiler.py — MLRadar
 ======================
-Main orchestrator. Renamed from MLProfiler → DataIQ.
+Main orchestrator. Renamed from MLProfiler → MLRadar.
 
 Original methods (preserved exactly, just class renamed):
     profile()          → full EDA report
@@ -44,9 +44,9 @@ from .code_gen     import PipelineCodeGenerator
 warnings.filterwarnings("ignore")
 
 
-class DataIQ:
+class MLRadar:
     """
-    DataIQ — Advanced ML Data Intelligence Suite.
+    MLRadar — Advanced ML Data Intelligence Suite.
 
     Parameters
     ----------
@@ -56,7 +56,7 @@ class DataIQ:
 
     Example
     -------
-    >>> diq = DataIQ(df, target="churn")
+    >>> diq = MLRadar(df, target="churn")
     >>> diq.profile("report.html")
     >>> diq.apply("drop_duplicates").apply("impute_median").apply("cap_outliers")
     >>> diq.compare("compare.html")
@@ -79,7 +79,7 @@ class DataIQ:
     # ORIGINAL METHODS  (preserved from MLProfiler, class name only changed)
     # ══════════════════════════════════════════════════════════════════
 
-    def profile(self, output: str = "dataiq_report.html",
+    def profile(self, output: str = "MLRadar_report.html",
                 open_browser: bool = True) -> str:
         """Generate full EDA report for the current dataset."""
         from pathlib import Path
@@ -100,7 +100,7 @@ class DataIQ:
             except Exception: pass
         return path
 
-    def compare(self, output: str = "dataiq_compare.html",
+    def compare(self, output: str = "MLRadar_compare.html",
                 open_browser: bool = True) -> str:
         """
         Generate a before/after comparison report.
@@ -154,7 +154,7 @@ class DataIQ:
 
     def apply(self, action_id: str,
               cols: Optional[List[str]] = None,
-              auto: bool = True) -> "DataIQ":
+              auto: bool = True) -> "MLRadar":
         """
         Apply a preprocessing transformation (chainable).
 
@@ -217,7 +217,7 @@ class DataIQ:
         print(f"💾 {path}")
         return path
 
-    def reset(self) -> "DataIQ":
+    def reset(self) -> "MLRadar":
         """Revert all transforms and reset to the original data."""
         self._current         = self.dataset.df.copy()
         self._history         = []
@@ -227,7 +227,7 @@ class DataIQ:
         return self
 
     def __repr__(self) -> str:
-        return (f"DataIQ('{self.dataset.name}', "
+        return (f"MLRadar('{self.dataset.name}', "
                 f"shape={self._current.shape}, "
                 f"target={self.target!r}, "
                 f"transforms={len(self._history)})")
@@ -237,7 +237,7 @@ class DataIQ:
     # ══════════════════════════════════════════════════════════════════
 
     def drift(self, df_new: pd.DataFrame,
-              output: str = "dataiq_drift.html",
+              output: str = "MLRadar_drift.html",
               open_browser: bool = True) -> Dict[str, Any]:
         """
         Compare the current dataset (reference/train) against df_new

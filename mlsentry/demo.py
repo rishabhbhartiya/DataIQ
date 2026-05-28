@@ -1,5 +1,5 @@
 """
-demo.py — DataIQ Full Demo
+demo.py — MLRadar Full Demo
 ===========================
 Generates all six outputs:
   before.html          — full EDA report (profile)
@@ -11,20 +11,20 @@ Generates all six outputs:
 
 Run
 ---
-  cd dataiq/
+  cd MLRadar/
   python demo.py
 
 Then open the HTML files in your browser.
 For model training:
   python cli/mlprofiler_train.py --data employee_cleaned.csv --target churn
 For drift monitoring:
-  python cli/dataiq_drift.py --ref employee_cleaned.csv --new employee_prod.csv --target churn
+  python cli/MLRadar_drift.py --ref employee_cleaned.csv --new employee_prod.csv --target churn
 """
 
 import sys
 import os
 
-_HERE = os.path.dirname(os.path.abspath(__file__))          # dataiq/
+_HERE = os.path.dirname(os.path.abspath(__file__))          # MLRadar/
 _ROOT = os.path.dirname(_HERE)                               # mlprofiler/
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
@@ -32,7 +32,7 @@ if _HERE not in sys.path:
     sys.path.insert(0, _HERE)
 
 # ── All output files go here ──────────────────────────────────────
-OUTPUT_DIR = os.path.join(_ROOT, "dataiq_output")
+OUTPUT_DIR = os.path.join(_ROOT, "MLRadar_output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.chdir(OUTPUT_DIR)   # so relative paths in HTML iframes resolve correctly
 
@@ -40,7 +40,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from dataiq import DataIQ
+from MLRadar import MLRadar
 
 # ══════════════════════════════════════════════════════════════════════════════
 # 1. BUILD DATASET  (same structure as original demo, messiness preserved)
@@ -86,19 +86,19 @@ df_prod = pd.DataFrame({
 df_prod.loc[np.random.random(n_prod) < 0.20, "income"] = np.nan   # missing rate jumped
 
 # ══════════════════════════════════════════════════════════════════════════════
-# 2. INIT DataIQ
+# 2. INIT MLRadar
 # ══════════════════════════════════════════════════════════════════════════════
 
 sep = "=" * 62
 
 print(sep)
-print("  DataIQ — Full Demo")
+print("  MLRadar — Full Demo")
 print(sep)
 print(f"  Dataset : Employee Dataset  ({len(df):,} rows × {len(df.columns)} cols)")
 print(f"  Target  : churn")
 print()
 
-diq = DataIQ(df, name="Employee Dataset", target="churn")
+diq = MLRadar(df, name="Employee Dataset", target="churn")
 print(repr(diq))
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -211,10 +211,10 @@ diq.export_csv("employee_cleaned.csv")
 # ══════════════════════════════════════════════════════════════════════════════
 
 print(f"\n{sep}")
-print("  ✅  DataIQ Demo Complete!")
+print("  ✅  MLRadar Demo Complete!")
 print(sep)
 print()
-print(f"  Output folder: dataiq_output/")
+print(f"  Output folder: MLRadar_output/")
 print()
 print("  Files generated:")
 print("    before.html          — full EDA report")
@@ -232,6 +232,6 @@ print("    + Pipeline Code Gen   — ready-to-run sklearn script")
 print()
 print("  Next steps:")
 print("    python cli/mlprofiler_train.py --data employee_cleaned.csv --target churn")
-print("    python cli/dataiq_drift.py --ref employee_cleaned.csv --new employee_prod.csv \\")
+print("    python cli/MLRadar_drift.py --ref employee_cleaned.csv --new employee_prod.csv \\")
 print("        --target churn --output drift_output/")
 print()

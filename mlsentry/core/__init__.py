@@ -1,4 +1,4 @@
-from .profiler    import DataIQ
+from .profiler    import MLRadar
 from .dataset     import Dataset
 from .analyzer    import AdvancedAnalyzer
 from .transformer import Transformer
@@ -10,7 +10,7 @@ from .interactions import FeatureInteractions
 from .code_gen    import PipelineCodeGenerator
 
 __all__ = [
-    "DataIQ", "Dataset", "AdvancedAnalyzer", "Transformer",
+    "MLRadar", "Dataset", "AdvancedAnalyzer", "Transformer",
     "ReportBuilder", "ReadinessScorer", "LeakageDetector",
     "DriftAnalyzer", "FeatureInteractions", "PipelineCodeGenerator",
 ]

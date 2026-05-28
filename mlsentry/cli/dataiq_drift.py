@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-dataiq_drift.py — Interactive Drift Monitor CLI
+MLRadar_drift.py — Interactive Drift Monitor CLI
 =================================================
 Compare a reference dataset (train) against a new dataset (test / production)
 and produce a PSI + KS-test drift report.
 
 Usage
 -----
-  python dataiq_drift.py --ref train.csv --new production.csv
-  python dataiq_drift.py --ref train.csv --new production.csv --target churn
-  python dataiq_drift.py --ref train.csv --new production.csv \\
+  python MLRadar_drift.py --ref train.csv --new production.csv
+  python MLRadar_drift.py --ref train.csv --new production.csv --target churn
+  python MLRadar_drift.py --ref train.csv --new production.csv \\
       --target churn --cutoff 2024-01-01 --output drift_output/ --no-browser
 
 Walkthrough
@@ -102,11 +102,11 @@ def psi_bar(psi: float, level: str, width: int = 20) -> str:
     return c(bar, clr) + f"  {c(f'{psi:.4f}', clr, 'bold')}"
 
 
-# ── load a dataset via DataIQ's Dataset loader ────────────────────────────────
+# ── load a dataset via MLRadar's Dataset loader ────────────────────────────────
 def load_dataset(path: str, label: str) -> pd.DataFrame:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
     try:
-        from dataiq.core.dataset import Dataset
+        from MLRadar.core.dataset import Dataset
         ds = Dataset(path)
         df = ds.df
         print(c(f"  ✓ {label}: {ds.name}  ({df.shape[0]:,} rows × {df.shape[1]} cols)", "green"))
@@ -230,7 +230,7 @@ def run_leakage_check(df_ref: pd.DataFrame, target: Optional[str],
                       output_dir: str) -> None:
     section("Leakage Check (Reference Dataset)")
     try:
-        from dataiq.core.leakage import LeakageDetector
+        from MLRadar.core.leakage import LeakageDetector
 
         corr_str = ask("Correlation threshold for leakage flag", default="0.85")
         try:
@@ -273,8 +273,8 @@ def run_pipeline_export(df_ref: pd.DataFrame, target: Optional[str],
                         output_dir: str) -> None:
     section("Export sklearn Pipeline Code")
     try:
-        from dataiq.core.analyzer  import AdvancedAnalyzer
-        from dataiq.core.code_gen  import PipelineCodeGenerator
+        from MLRadar.core.analyzer  import AdvancedAnalyzer
+        from MLRadar.core.code_gen  import PipelineCodeGenerator
 
         print(c("  Analysing reference data to build pipeline...", "dim"))
         analysis = AdvancedAnalyzer(df_ref, target=target, label="reference").analyze()
@@ -316,7 +316,7 @@ def run_pipeline_export(df_ref: pd.DataFrame, target: Optional[str],
         print(c(f"\n  Pipeline code saved → {out_path}", "green"))
 
     except ImportError as e:
-        print(c(f"  ✗ Could not import DataIQ modules: {e}", "red"))
+        print(c(f"  ✗ Could not import MLRadar modules: {e}", "red"))
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -325,14 +325,14 @@ def run_pipeline_export(df_ref: pd.DataFrame, target: Optional[str],
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="DataIQ Drift Monitor — compare train vs production data",
+        description="MLRadar Drift Monitor — compare train vs production data",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=textwrap_dedent("""
         Examples
         --------
-          python dataiq_drift.py --ref train.csv --new production.csv
-          python dataiq_drift.py --ref train.csv --new production.csv --target churn
-          python dataiq_drift.py --ref train.csv --new production.csv \\
+          python MLRadar_drift.py --ref train.csv --new production.csv
+          python MLRadar_drift.py --ref train.csv --new production.csv --target churn
+          python MLRadar_drift.py --ref train.csv --new production.csv \\
               --target churn --cutoff 2024-01-01 --output drift_out/ --no-browser
         """),
     )
@@ -348,7 +348,7 @@ def main() -> None:
 
     os.makedirs(args.output, exist_ok=True)
 
-    header("DataIQ — Drift Monitor")
+    header("MLRadar — Drift Monitor")
 
     # ── 1. Load datasets ──────────────────────────────────────────────
     section("Loading Datasets")
@@ -407,7 +407,7 @@ def main() -> None:
     print(c("  Computing PSI, KS-test, chi-square, schema diff...", "dim"))
 
     try:
-        from dataiq.core.drift import DriftAnalyzer
+        from MLRadar.core.drift import DriftAnalyzer
     except ImportError as e:
         print(c(f"  ✗ Cannot import DriftAnalyzer: {e}", "red"))
         sys.exit(1)
@@ -431,7 +431,7 @@ def main() -> None:
     # ── 6. Save HTML report ───────────────────────────────────────────
     section("Saving Outputs")
     try:
-        from dataiq.core.report_builder import ReportBuilder
+        from MLRadar.core.report_builder import ReportBuilder
 
         html_path = str(Path(args.output) / "drift_report.html")
         rb        = ReportBuilder(

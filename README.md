@@ -1,43 +1,43 @@
-# DataIQ — ML Data Intelligence Suite
+# MLRadar — ML Data Intelligence Suite
 
 > **The ML data library that thinks, not just profiles.**
 
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![PyPI](https://img.shields.io/badge/pypi-dataiq-orange.svg)](https://pypi.org/project/dataiq)
+[![PyPI](https://img.shields.io/badge/pypi-MLRadar-orange.svg)](https://pypi.org/project/MLRadar)
 [![Code](https://img.shields.io/badge/code-8k%2B%20lines-lightgrey.svg)]()
 
-Most data profiling tools give you charts and statistics. **DataIQ gives you answers.**
+Most data profiling tools give you charts and statistics. **MLRadar gives you answers.**
 
 It automatically scores your data for ML readiness, detects leakage before it silently destroys your model, measures feature interactions using information theory, monitors production drift with PSI, and generates a ready-to-run sklearn pipeline — all from a single Python call.
 
 ---
 
-## What makes DataIQ different
+## What makes MLRadar different
 
 Every other data profiling tool answers the same question: *"What does my data look like?"*
 
-DataIQ answers a different question: **"Is my data ready to train a model — and what will go wrong if I try?"**
+MLRadar answers a different question: **"Is my data ready to train a model — and what will go wrong if I try?"**
 
 ### It scores, not just describes
 
-Instead of showing you a missing value bar chart and leaving the interpretation to you, DataIQ grades every column A–F across 7 ML-specific dimensions. You know immediately which columns are production-ready and which will quietly destroy your model.
+Instead of showing you a missing value bar chart and leaving the interpretation to you, MLRadar grades every column A–F across 7 ML-specific dimensions. You know immediately which columns are production-ready and which will quietly destroy your model.
 
 ### It catches leakage before you train
 
-Data leakage is the most common reason a model with 99% validation accuracy fails completely in production. DataIQ runs 6 independent leakage detectors — name proximity, target correlation, derived features, future data, ID columns, and zero-variance columns — and tells you exactly what to drop and why.
+Data leakage is the most common reason a model with 99% validation accuracy fails completely in production. MLRadar runs 6 independent leakage detectors — name proximity, target correlation, derived features, future data, ID columns, and zero-variance columns — and tells you exactly what to drop and why.
 
 ### It measures interactions, not just correlations
 
-Pearson correlation only captures linear relationships. DataIQ uses Mutual Information for numeric pairs, Cramér's V for categorical pairs, and Correlation Ratio η² for mixed pairs. It finds redundant feature groups and tells you which features actually interact with your target — linear or not.
+Pearson correlation only captures linear relationships. MLRadar uses Mutual Information for numeric pairs, Cramér's V for categorical pairs, and Correlation Ratio η² for mixed pairs. It finds redundant feature groups and tells you which features actually interact with your target — linear or not.
 
 ### It watches your data over time
 
-DataIQ detects concept drift within your dataset (mean shift across time quartiles) and measures distribution drift between your training and production data using PSI and KS-tests. You get a colour-coded report telling you which features have drifted and whether to retrain.
+MLRadar detects concept drift within your dataset (mean shift across time quartiles) and measures distribution drift between your training and production data using PSI and KS-tests. You get a colour-coded report telling you which features have drifted and whether to retrain.
 
 ### It writes your pipeline for you
 
-After profiling, DataIQ generates a complete, immediately runnable sklearn pipeline script — with the right imputer, scaler, and encoder already chosen for each column based on what it found. Not a template. A script built for your specific data.
+After profiling, MLRadar generates a complete, immediately runnable sklearn pipeline script — with the right imputer, scaler, and encoder already chosen for each column based on what it found. Not a template. A script built for your specific data.
 
 ### The knowledge base knows what you're looking at
 
@@ -48,7 +48,7 @@ The right sidebar isn't a static glossary. It updates as you navigate — when y
 ## Installation
 
 ```bash
-pip install dataiq
+pip install MLRadar
 ```
 
 **Core dependencies** (auto-installed):
@@ -59,7 +59,7 @@ plotly >= 5.0    scikit-learn >= 1.0
 
 **Optional extras** (for model training CLI):
 ```bash
-pip install dataiq[full]
+pip install MLRadar[full]
 # installs: shap, optuna, xgboost, lightgbm, pyarrow
 ```
 
@@ -68,11 +68,11 @@ pip install dataiq[full]
 ## Quickstart
 
 ```python
-from dataiq import DataIQ
+from MLRadar import MLRadar
 import pandas as pd
 
 df  = pd.read_csv("your_data.csv")
-diq = DataIQ(df, target="churn")
+diq = MLRadar(df, target="churn")
 
 # Full EDA report → before.html
 diq.profile("before.html")
@@ -203,7 +203,7 @@ Automatically decides:
 
 ### 6. Temporal Awareness
 
-For datasets with datetime columns, DataIQ detects **concept drift over time**:
+For datasets with datetime columns, MLRadar detects **concept drift over time**:
 
 ```python
 analysis = diq.analyze()
@@ -270,7 +270,7 @@ diq.reset()              # revert to original data
 ### Model Training
 
 ```bash
-python -m dataiq.cli.mlprofiler_train \
+python -m MLRadar.cli.mlprofiler_train \
     --data employee_cleaned.csv \
     --target churn
 ```
@@ -280,7 +280,7 @@ Interactive walkthrough: model selection → preprocessing → cross-validation 
 ### Drift Monitoring
 
 ```bash
-python -m dataiq.cli.dataiq_drift \
+python -m MLRadar.cli.MLRadar_drift \
     --ref train.csv \
     --new production.csv \
     --target churn \
@@ -295,14 +295,14 @@ Prints colour-coded PSI table to terminal. Saves `drift_report.html` + `drift_re
 ## Data Sources Supported
 
 ```python
-DataIQ("data.csv")          # CSV
-DataIQ("data.xlsx")         # Excel
-DataIQ("data.parquet")      # Parquet
-DataIQ("data.json")         # JSON / JSON Lines
-DataIQ("data.xml")          # XML
-DataIQ(df)                  # pandas DataFrame
-DataIQ(np_array)            # NumPy array
-DataIQ({"col": [...]})      # dict / list of dicts
+MLRadar("data.csv")          # CSV
+MLRadar("data.xlsx")         # Excel
+MLRadar("data.parquet")      # Parquet
+MLRadar("data.json")         # JSON / JSON Lines
+MLRadar("data.xml")          # XML
+MLRadar(df)                  # pandas DataFrame
+MLRadar(np_array)            # NumPy array
+MLRadar({"col": [...]})      # dict / list of dicts
 ```
 
 ---
@@ -310,10 +310,10 @@ DataIQ({"col": [...]})      # dict / list of dicts
 ## File Structure
 
 ```
-dataiq/
+MLRadar/
 ├── __init__.py
 ├── core/
-│   ├── profiler.py          ← DataIQ orchestrator
+│   ├── profiler.py          ← MLRadar orchestrator
 │   ├── analyzer.py          ← Full EDA engine (19 sections)
 │   ├── scorer.py            ← ML Readiness Score (7 dimensions)
 │   ├── leakage.py           ← Leakage Detective (6 categories)
@@ -329,7 +329,7 @@ dataiq/
 │   └── narrative.py         ← Plain-English narration engine
 ├── cli/
 │   ├── mlprofiler_train.py  ← Interactive model training CLI
-│   └── dataiq_drift.py      ← Drift monitoring CLI
+│   └── MLRadar_drift.py      ← Drift monitoring CLI
 └── demo.py                  ← Full demo (generates all outputs)
 ```
 
@@ -338,13 +338,13 @@ dataiq/
 ## Full Demo
 
 ```bash
-git clone https://github.com/yourusername/dataiq.git
-cd dataiq
+git clone https://github.com/yourusername/MLRadar.git
+cd MLRadar
 pip install -r requirements.txt
-python dataiq/demo.py
+python MLRadar/demo.py
 ```
 
-Generates in `dataiq_output/`:
+Generates in `MLRadar_output/`:
 
 | File | Description |
 |---|---|
@@ -360,7 +360,7 @@ Generates in `dataiq_output/`:
 ## API Reference
 
 ```python
-DataIQ(data, name=None, target=None)
+MLRadar(data, name=None, target=None)
 
 # Reports
 .profile(output, open_browser)          → str (path)
@@ -378,9 +378,9 @@ DataIQ(data, name=None, target=None)
 .recommend()                            → List[dict]
 
 # Transforms (all chainable, return self)
-.apply(action_id, cols, auto)           → DataIQ
+.apply(action_id, cols, auto)           → MLRadar
 .pipeline_summary()                     → None
-.reset()                                → DataIQ
+.reset()                                → MLRadar
 
 # Export
 .get_dataframe()                        → pd.DataFrame

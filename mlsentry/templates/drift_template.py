@@ -1,4 +1,4 @@
-"""drift_template.py — DataIQ Drift Report Template
+"""drift_template.py — MLRadar Drift Report Template
 
 Standalone HTML report for train vs test / reference vs production drift.
 
@@ -24,7 +24,7 @@ def get_drift_template() -> str:
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DataIQ Drift — __DATASET_NAME__</title>
+<title>MLRadar Drift — __DATASET_NAME__</title>
 <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -195,7 +195,7 @@ body::before{
 <!-- ── SIDEBAR ── -->
 <nav class="sidebar">
   <div class="logo-area">
-    <div class="logo-name">DataIQ Drift</div>
+    <div class="logo-name">MLRadar Drift</div>
     <div class="logo-sub">Train vs Production Monitor</div>
   </div>
   <div class="ds-info">

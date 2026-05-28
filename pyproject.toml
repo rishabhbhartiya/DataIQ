@@ -1,15 +1,15 @@
 [build-system]
 requires = ["setuptools>=68", "wheel"]
-build-backend = "setuptools.backends.legacy:build"
+build-backend = "setuptools.build_meta"
 
 [project]
-name = "dataiq"
+name = "MLRadar"
 version = "1.0.0"
 description = "ML Data Intelligence Suite — Readiness scoring, leakage detection, drift analysis, and pipeline generation"
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
-    { name = "Rishabh Bhartiya", email = "your@email.com" }
+    { name = "Rishabh Bhartiya", email = "rishabh.bhartiya.in@gmail.com" }
 ]
 keywords = [
     "machine learning", "data profiling", "eda", "exploratory data analysis",
@@ -60,18 +60,19 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/dataiq"
-Repository = "https://github.com/yourusername/dataiq"
-"Bug Tracker" = "https://github.com/yourusername/dataiq/issues"
-Documentation = "https://github.com/yourusername/dataiq#readme"
+Homepage = "https://github.com/rishabhbhartiya/MLRadar"
+Repository = "https://github.com/rishabhbhartiya/MLRadar"
+"Bug Tracker" = "https://github.com/rishabhbhartiya/MLRadar/issues"
+Documentation = "https://github.com/rishabhbhartiya/MLRadar#readme"
 
 [project.scripts]
-dataiq-train = "dataiq.cli.mlprofiler_train:main"
-dataiq-drift = "dataiq.cli.dataiq_drift:main"
+MLRadar-train = "MLRadar.cli.mlprofiler_train:main"
+MLRadar-drift = "MLRadar.cli.dataiq_drift:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["dataiq*"]
+include = ["MLRadar*"]
 
 [tool.setuptools.package-data]
-dataiq = ["templates/*.py", "templates/*.html"]
+MLRadar = ["templates/*.py", "templates/*.html"]
+

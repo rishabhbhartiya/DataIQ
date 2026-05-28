@@ -1,7 +1,7 @@
 """
 analyzer.py — AdvancedAnalyzer
 ================================
-Full EDA engine for DataIQ.
+Full EDA engine for MLRadar.
 
 Original sections (unchanged from mlprofiler2):
   overview, missing, duplicates, outliers,
@@ -47,7 +47,7 @@ import hashlib
 
 # Directory where chart files are saved — set before calling AdvancedAnalyzer
 # e.g. set_charts_dir("my_report_charts/")
-_CHARTS_DIR: str = "dataiq_charts"
+_CHARTS_DIR: str = "MLRadar_charts"
 
 
 def set_charts_dir(path: str) -> None:

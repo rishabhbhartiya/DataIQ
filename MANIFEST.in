@@ -5,10 +5,10 @@ include requirements.txt
 include pyproject.toml
 
 # Include all Python files in the package
-recursive-include dataiq *.py
+recursive-include MLRadar *.py
 
 # Exclude generated outputs, caches, and dev artifacts
-exclude dataiq_output/
+exclude MLRadar_output/
 exclude my_script.py
 exclude pipeline.py
 exclude employee_cleaned.csv

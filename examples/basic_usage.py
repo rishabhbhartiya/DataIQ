@@ -1,8 +1,8 @@
-from dataiq import DataIQ
+from MLRadar import MLRadar
 import pandas as pd
 
 df = pd.read_csv("employee_cleaned.csv")
-diq = DataIQ(df, target="churn")
+diq = MLRadar(df, target="churn")
 
 # Full EDA report
 diq.profile("report.html")

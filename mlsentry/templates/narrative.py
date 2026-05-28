@@ -22,7 +22,7 @@ from typing import Any, Dict, List, Optional
 
 class NarrativeEngine:
     """
-    Generate plain-English narratives from a DataIQ analysis result dict.
+    Generate plain-English narratives from a MLRadar analysis result dict.
 
     Parameters
     ----------
@@ -429,7 +429,7 @@ class NarrativeEngine:
         if not pt or pt.get("type") == "unknown":
             return (
                 "No target column specified — problem type could not be determined. "
-                "Set target= when creating DataIQ for automatic detection."
+                "Set target= when creating MLRadar for automatic detection."
             )
 
         ptype      = pt.get("type", "unknown")
