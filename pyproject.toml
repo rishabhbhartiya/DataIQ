@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "dataiq"
+version = "1.0.0"
+description = "ML Data Intelligence Suite — Readiness scoring, leakage detection, drift analysis, and pipeline generation"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Rishabh Bhartiya", email = "your@email.com" }
+]
+keywords = [
+    "machine learning", "data profiling", "eda", "exploratory data analysis",
+    "data quality", "feature engineering", "data drift", "leakage detection",
+    "sklearn pipeline", "ml readiness"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pandas>=1.3",
+    "numpy>=1.21",
+    "scipy>=1.7",
+    "plotly>=5.0",
+    "scikit-learn>=1.0",
+]
+
+[project.optional-dependencies]
+full = [
+    "shap",
+    "optuna",
+    "xgboost",
+    "lightgbm",
+    "pyarrow",
+    "statsmodels",
+    "openpyxl",
+]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "black",
+    "isort",
+    "mypy",
+    "twine",
+    "build",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/dataiq"
+Repository = "https://github.com/yourusername/dataiq"
+"Bug Tracker" = "https://github.com/yourusername/dataiq/issues"
+Documentation = "https://github.com/yourusername/dataiq#readme"
+
+[project.scripts]
+dataiq-train = "dataiq.cli.mlprofiler_train:main"
+dataiq-drift = "dataiq.cli.dataiq_drift:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dataiq*"]
+
+[tool.setuptools.package-data]
+dataiq = ["templates/*.py", "templates/*.html"]

@@ -1,0 +1,20 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include requirements.txt
+include pyproject.toml
+
+# Include all Python files in the package
+recursive-include dataiq *.py
+
+# Exclude generated outputs, caches, and dev artifacts
+exclude dataiq_output/
+exclude my_script.py
+exclude pipeline.py
+exclude employee_cleaned.csv
+
+recursive-exclude * __pycache__
+recursive-exclude * *.pyc
+recursive-exclude * *.pyo
+recursive-exclude * .DS_Store
+recursive-exclude * *.egg-info
