@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "MLRadar"
-version = "1.0.0"
+version = "1.0.1"
 description = "ML Data Intelligence Suite — Readiness scoring, leakage detection, drift analysis, and pipeline generation"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -67,7 +67,7 @@ Documentation = "https://github.com/rishabhbhartiya/MLRadar#readme"
 
 [project.scripts]
 MLRadar-train = "MLRadar.cli.mlprofiler_train:main"
-MLRadar-drift = "MLRadar.cli.dataiq_drift:main"
+MLRadar-drift = "MLRadar.cli.MLRadar_drift:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
